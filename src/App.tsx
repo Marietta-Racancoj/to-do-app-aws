@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 import { useAuthenticator } from '@aws-amplify/ui-react';
+import { Trash2 } from 'lucide-react'; //For trash can icon image used for the delete button
 
 const client = generateClient<Schema>();
 
@@ -32,13 +33,40 @@ function App() {
       <ul>
         {todos.map((todo) => (
           <li 
-          onClick={() => deleteTodo(todo.id)}
-          key={todo.id}>{todo.content}
+            key={todo.id} 
+            style={{ 
+              marginBottom: '8px', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'space-between' 
+            }}
+          >
+            {todo.content}
+            <button 
+              onClick={() => {
+                if (window.confirm("Are you sure you want to delete this todo?")) {
+                  deleteTodo(todo.id);
+                }
+              }} 
+              style={{ 
+                background: 'none', 
+                border: 'none', 
+                cursor: 'pointer' 
+              }}
+              aria-label="Delete todo"
+              title="Delete"
+            >
+              <Trash2 size={16} color="red" />
+            </button>
           </li>
         ))}
       </ul>
+
+
+
+
       <div>
-        🥳 App successfully hosted. Try creating a new todo.
+        
         <br />
         <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
           Review next step of this tutorial.
