@@ -3,7 +3,7 @@ import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Trash2 } from 'lucide-react'; //For trash can icon image used for the delete button
-import { Pencil } from 'lucide-react';
+// import { Pencil } from 'lucide-react';
 
 
 const client = generateClient<Schema>();
@@ -28,21 +28,21 @@ function App() {
 
 
 
-  async function updateTodo(id: string) {
-    const newContent = window.prompt("New content?");
-    if (!newContent) return;
+  // async function updateTodo(id: string) {
+  //   const newContent = window.prompt("New content?");
+  //   if (!newContent) return;
   
-    const { data: updatedTodo, errors } = await client.models.Todo.update({
-      id,
-      content: newContent,
-    });
+  //   const { data: updatedTodo, errors } = await client.models.Todo.update({
+  //     id,
+  //     content: newContent,
+  //   });
   
-    if (errors) {
-      console.error(errors);
-    } else {
-      console.log("Updated!", updatedTodo);
-    }
-  }
+  //   if (errors) {
+  //     console.error(errors);
+  //   } else {
+  //     console.log("Updated!", updatedTodo);
+  //   }
+  // }
   
   
 
@@ -69,7 +69,7 @@ function App() {
           >
            {todo.content}
             <div>
-              <button onClick={() => updateTodo(todo.id)}style={{
+              {/* <button onClick={() => updateTodo(todo.id)}style={{
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
@@ -79,7 +79,7 @@ function App() {
                 title="Edit"
               >
               <Pencil size={16} color="blue" />
-              </button>
+              </button> */}
               <button
                 onClick={() => {
                   if (window.confirm("Are you sure you want to delete this todo?")) {
