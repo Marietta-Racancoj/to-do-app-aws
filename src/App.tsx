@@ -54,7 +54,7 @@ function App() {
     <main>
       <h1>{user?.signInDetails?.loginId}'s todos</h1>
       <button onClick={createTodo}>+ new</button>
-      <button onClick={() => updateTodo(todo.id)}>Edit</button>
+      {/* <button onClick={() => updateTodo(todo.id)}>Edit</button> */}
 
       <ul>
         {todos.map((todo) => (
@@ -86,7 +86,7 @@ function App() {
                     deleteTodo(todo.id);
                   }
                 }}
-                style={{gi
+                style={{
                   background: 'none',
                   border: 'none',
                   cursor: 'pointer',
