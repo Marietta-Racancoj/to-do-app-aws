@@ -1,8 +1,10 @@
-import { defineStorage } from "@aws-amplify/backend";
+import { defineStorage } from '@aws-amplify/backend';
 
 export const storage = defineStorage({
-  name: "todostorage",
+  name: "to-do-s3-bucket-admin-amplify",
   access: (allow) => ({
-    "photos/": [allow.authenticated.to(["read", "write"])],
+    // Authenticated users can read & write
+    'photos/*': [allow.authenticated.to(['read', 'write','delete'])],
   }),
 });
+
