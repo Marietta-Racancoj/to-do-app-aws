@@ -5,6 +5,7 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 import { Trash2, Pencil } from "lucide-react";
 import { uploadData, getUrl } from 'aws-amplify/storage';
 
+
 const client = generateClient<Schema>();
 
 
@@ -46,7 +47,7 @@ function App() {
     let uploadedKey: string | undefined;
 
     if (photoFile) {
-      const filename = `photos/${Date.now()}-${photoFile.name}`;
+      const filename = `protected/photos/${Date.now()}-${photoFile.name}`;
       const result = await uploadData({
         key: filename,
         data: photoFile,
