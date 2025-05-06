@@ -47,7 +47,7 @@ function App() {
     let uploadedKey: string | undefined;
 
     if (photoFile) {
-      const filename = `protected/${Date.now()}-${photoFile.name}`;
+      const filename = `public/${Date.now()}-${photoFile.name}`;
       const result = await uploadData({
         key: filename,
         data: photoFile,
