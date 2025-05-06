@@ -47,7 +47,7 @@ function App() {
     let uploadedKey: string | undefined;
 
     if (photoFile) {
-      const filename = `protected/photos/${Date.now()}-${photoFile.name}`;
+      const filename = `public/${Date.now()}-${photoFile.name}`;
       const result = await uploadData({
         key: filename,
         data: photoFile,
@@ -100,7 +100,7 @@ function App() {
 
   return (
     <main>
-      <h1>{user?.signInDetails?.loginId}'s todos</h1>
+      <h1 className="user-name">{user?.signInDetails?.loginId}'s todos</h1>
       <button onClick={openCreateModal}>+ new</button>
 
       <ul>
