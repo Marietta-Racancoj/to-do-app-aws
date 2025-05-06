@@ -94,6 +94,15 @@ function App() {
     setShowModal(true);
   }
 
+  //function to toggle isDone property for each todo
+  async function toggleDone(todo: Schema["Todo"]["type"]) {
+    await client.models.Todo.update({
+      id: todo.id,
+      isDone: !todo.isDone,
+    });
+  }
+  
+
   function deleteTodo(id: string) {
     client.models.Todo.delete({ id }).catch(console.error);
   }
@@ -114,15 +123,31 @@ function App() {
               justifyContent: "space-between",
             }}
           >
-            <span style={{ paddingRight: "10px" }}>{todo.content}</span>
-
-            {photoUrls[todo.id] && (
-              <img
-                src={photoUrls[todo.id]}
-                alt="Todo"
-                style={{ width: "60px", height: "auto", marginRight: "10px" }}
+            <div style={{ display: "flex", alignItems: "center", flex: 1 }}>
+              <input
+                type="checkbox"
+                checked={!!todo.isDone}
+                onChange={() => toggleDone(todo)}
+                style={{ marginRight: "10px" }}
               />
-            )}
+              <span
+                style={{
+                  textDecoration: todo.isDone ? "line-through" : "none",
+                  paddingRight: "10px",
+                  flex: 1,
+                }}
+              >
+                {todo.content}
+              </span>
+
+              {photoUrls[todo.id] && (
+                <img
+                  src={photoUrls[todo.id]}
+                  alt="Todo"
+                  style={{ width: "60px", height: "auto", marginRight: "10px" }}
+                />
+              )}
+            </div>
 
             <div>
               <button
@@ -157,6 +182,7 @@ function App() {
               </button>
             </div>
           </li>
+
         ))}
       </ul>
 
