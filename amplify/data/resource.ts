@@ -11,7 +11,7 @@ const schema = a.schema({
     .model({
       content: a.string(),
       isDone: a.boolean().default(false), //mark task as done
-      // photoKey: a.string().optional(), //PHOTO KEY FOR REFERENCE TO UPLOADED S3 FILE
+      photoKey: a.string(), //PHOTO KEY FOR REFERENCE TO UPLOADED S3 FILE
     })
     .authorization((allow) => [allow.owner()]),
 });
